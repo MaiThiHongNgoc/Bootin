@@ -11,6 +11,7 @@ const Home = () => {
       <Slide/>
       <Welcome/>
       <Banner/>
+      <h1>hello</h1>
     </div>
   )
 }
