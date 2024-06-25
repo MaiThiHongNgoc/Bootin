@@ -13,26 +13,37 @@ import Shop from './Pages/Shop/Shop';
 import Blog from './Pages/Blog/Blog';
 import Author from './Pages/Author/Author';
 import Contact from './Pages/Contact/Contact';
-import {Header} from './Component/Header/Header';
-import Footer from './Component/Footer/Footer';
+import PageNotFound from './Pages/404'
 
 
+
+import Admin from "./Backend/Admin/Admin";
 
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <Header/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/author" element={<Author />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/404" element={<PageNotFound />} />
+
+
+
+
+          <Route path="/admin" element={<Admin />} />
+          
+
+
+
+
+          
           
         </Routes>
-        <Footer/>
       </BrowserRouter>
       
     </div>
