@@ -18,6 +18,9 @@ import PageNotFound from './Pages/404'
 
 
 import Admin from "./Backend/Admin/Admin";
+import UserList from "./Backend/User/UserList";
+import CategoryList from "./Backend/Category/CategoryList";
+import ProductList from "./Backend/Product/ProductList";
 
 
 function App() {
@@ -36,6 +39,9 @@ function App() {
 
 
           <Route path="/admin" element={<Admin />} />
+          <Route path="/user" element={<UserList />} />
+          <Route path="/category" element={<CategoryList />} />
+          <Route path="/products" element={<ProductList />} />
           
 
 
