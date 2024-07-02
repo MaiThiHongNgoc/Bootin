@@ -1,60 +1,73 @@
 import React, { useState, useEffect } from 'react';
 import { createProduct, updateProduct } from '../Service/productService';
+import { getAuthors } from '../Service/authorService';
+import { getCategories } from '../Service/categoryService';
 
 const ProductForm = ({ product, onSave }) => {
     const [formData, setFormData] = useState({
         product_name: '',
-        author_name: '',
+        author_id: '', // ID của tác giả được chọn
         description: '',
         price: '',
-        categories: {
-            category_name: ''
-        },
+        category_id: '', // ID của danh mục được chọn
         image_url: ''
     });
+
+    const [authors, setAuthors] = useState([]);
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        // Load authors and categories initially
+        loadAuthors();
+        loadCategories();
+    }, []);
 
     useEffect(() => {
         if (product) {
             setFormData({
                 product_name: product.product_name,
-                author_name: product.author_name,
+                author_id: product.author.author_id,
                 description: product.description,
                 price: product.price,
-                categories: {
-                    category_name: product.categories.category_name // Ensure correct property access
-                },
+                category_id: product.categories.category_id,
                 image_url: product.image_url
             });
         } else {
             setFormData({
                 product_name: '',
-                author_name: '',
+                author_id: '',
                 description: '',
                 price: '',
-                categories: {
-                    category_name: ''
-                },
+                category_id: '',
                 image_url: ''
             });
         }
     }, [product]);
 
+    const loadAuthors = async () => {
+        try {
+            const data = await getAuthors();
+            setAuthors(data);
+        } catch (error) {
+            console.error('Failed to fetch authors', error);
+        }
+    };
+
+    const loadCategories = async () => {
+        try {
+            const data = await getCategories();
+            setCategories(data);
+        } catch (error) {
+            console.error('Failed to fetch categories', error);
+        }
+    };
+
     const handleChange = (e) => {
         const { name, value } = e.target;
-        if (name === 'category_name') {
-            setFormData(prevState => ({
-                ...prevState,
-                categories: {
-                    ...prevState.categories,
-                    category_name: value
-                }
-            }));
-        } else {
-            setFormData(prevState => ({
-                ...prevState,
-                [name]: value
-            }));
-        }
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
     };
 
     const handleSubmit = async (e) => {
@@ -68,12 +81,10 @@ const ProductForm = ({ product, onSave }) => {
             }
             setFormData({
                 product_name: '',
-                author_name: '',
+                author_id: '',
                 description: '',
                 price: '',
-                categories: {
-                    category_name: ''
-                },
+                category_id: '',
                 image_url: ''
             });
             onSave();
@@ -96,20 +107,26 @@ const ProductForm = ({ product, onSave }) => {
             <div>
                 <label>Product Name</label>
                 <input
-type="text"
+                    type="text"
                     name="product_name"
                     value={formData.product_name}
                     onChange={handleChange}
                 />
             </div>
             <div>
-                <label>Author Name</label>
-                <input
-                    type="text"
-                    name="author_name"
-                    value={formData.author_name}
+                <label>Author</label>
+                <select
+                    name="author_id"
+                    value={formData.author_id}
                     onChange={handleChange}
-                />
+                >
+                    <option value="">Select author...</option>
+                    {authors.map(author => (
+                        <option key={author.author_id} value={author.author_id}>
+                            {author.author_name}
+                        </option>
+                    ))}
+                </select>
             </div>
             <div>
                 <label>Description</label>
@@ -130,13 +147,19 @@ type="text"
                 />
             </div>
             <div>
-                <label>Category Name</label>
-                <input
-                    type="text"
-                    name="category_name"
-                    value={formData.categories.category_name}
+                <label>Category</label>
+                <select
+                    name="category_id"
+                    value={formData.category_id}
                     onChange={handleChange}
-                />
+                >
+                    <option value="">Select category...</option>
+                    {categories.map(categories => (
+                        <option key={categories.category_id} value={categories.category_id}>
+                            {categories.category_name}
+                        </option>
+                    ))}
+                </select>
             </div>
             <div>
                 <label>Image URL</label>

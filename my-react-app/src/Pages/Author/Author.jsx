@@ -1,11 +1,38 @@
-import React from 'react';
-import { RxSlash } from "react-icons/rx";
+import React, { useState, useEffect } from 'react';
+import { getAuthors } from '../../Backend/Service/authorService';
+import Header from '../../Component/Header/Header';
+import Footer from '../../Component/Footer/Footer';
 import './Author.css';
+import { RxSlash } from "react-icons/rx";
 
 const Author = () => {
+  const [authors, setAuthors] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [authorsPerPage] = useState(8); // Number of authors per page
+
+  useEffect(() => {
+    loadAuthors();
+  }, []);
+
+  const loadAuthors = async () => {
+    try {
+      const data = await getAuthors();
+      setAuthors(data);
+    } catch (error) {
+      console.error('Failed to fetch authors', error);
+    }
+  };
+
+  // Logic for pagination
+  const indexOfLastAuthor = currentPage * authorsPerPage;
+  const indexOfFirstAuthor = indexOfLastAuthor - authorsPerPage;
+  const currentAuthors = authors.slice(indexOfFirstAuthor, indexOfLastAuthor);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
-    <div className='author-main'>
-      <div className='author-page'>
+    <div>
+      <Header/>
         <div className='author-title'>
           <h1 className='author-product'> Product Author </h1>
           <div className='author-bread'>
@@ -18,197 +45,35 @@ const Author = () => {
             </div>
           </div>
         </div>
-      </div>
-      <div className='author-container'>
-        <div className='author-row'>
-          <div className='author-col'>
-            <div className='author-content'>
-              <div className='author-area'>
-                <div className='author-site'>
-                  <article className='author-post'>
-                    <div className='author-entry'>
-                      <div className='author-custom'>
-                        <div className='author-column'>
-                          <div className='author-inner'>
-                            <div className='author-wrapper'>
-                              <div className='author-404'>
-                                <div className='authors'>
-                                  <div className='author-time'>
-                                    <div className='author-time-content'>
-                                      <div className='author-item-image'>
-                                        <a className='author-href'href='#'>
-                                          <img decoding='async' className='author-img' src='https://wpbingosite.com/wordpress/bootin/wp-content/uploads/2019/05/Image-1-1-1.jpg' alt='Anna Hillton'></img>
-                                        </a>
-                                      </div>
-                                      <div className='author-con'>
-                                        <div className='author-item-title'>
-                                          <a className='author-name' href=''>
-                                            <span className='author-span'>Anna Hillton</span>
-                                          </a>
-                                        </div>
-                                        <div className='author-item-count'>
-                                          3
-                                          <span className='author-book'> Published Book</span>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div className='author-time'>
-                                    <div className='author-time-content'>
-                                      <div className='author-item-image'>
-                                        <a className='author-href'href='#'>
-                                          <img decoding='async' className='author-img' src='https://wpbingosite.com/wordpress/bootin/wp-content/uploads/2019/05/Image-2-2.jpg' alt='Anna Hilltons'></img>
-                                        </a>
-                                      </div>
-                                      <div className='author-con'>
-                                        <div className='author-item-title'>
-                                          <a className='author-a' href=''>
-                                            <span className='author-span'>Anna Hilltons</span>
-                                          </a>
-                                        </div>
-                                        <div className='author-item-count'>
-                                          4
-                                          <span className='author-book'> Published Book</span>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div className='author-time'>
-                                    <div className='author-time-content'>
-                                      <div className='author-item-image'>
-                                        <a className='author-href'href='#'>
-                                          <img decoding='async' className='author-img' src='https://wpbingosite.com/wordpress/bootin/wp-content/uploads/2019/05/Image-4-4.jpg' alt='Coco Simon'></img>
-                                        </a>
-                                      </div>
-                                      <div className='author-con'>
-                                        <div className='author-item-title'>
-                                          <a className='author-a' href=''>
-                                            <span className='author-span'>Coco Simon</span>
-                                          </a>
-                                        </div>
-                                        <div className='author-item-count'>
-                                          2
-                                          <span className='author-book'> Published Book</span>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div className='author-time'>
-                                    <div className='author-time-content'>
-                                      <div className='author-item-image'>
-                                        <a className='author-href'href='#'>
-                                          <img decoding='async' className='author-img' src='https://wpbingosite.com/wordpress/bootin/wp-content/uploads/2019/05/Image-3-3.jpg' alt='Nicolas Sumpir'></img>
-                                        </a>
-                                      </div>
-                                      <div className='author-con'>
-                                        <div className='author-item-title'>
-                                          <a className='author-a' href=''>
-                                            <span className='author-span'>Nicolas Sumpir</span>
-                                          </a>
-                                        </div>
-                                        <div className='author-item-count'>
-                                          3
-                                          <span className='author-book'> Published Book</span>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div className='author-time'>
-                                    <div className='author-time-content'>
-                                      <div className='author-item-image'>
-                                        <a className='author-href'href='#'>
-                                          <img decoding='async' className='author-img' src='https://wpbingosite.com/wordpress/bootin/wp-content/uploads/2019/07/Image-7-7.jpg' alt='Oga Sylas'></img>
-                                        </a>
-                                      </div>
-                                      <div className='author-con'>
-                                        <div className='author-item-title'>
-                                          <a className='author-a' href=''>
-                                            <span className='author-span'>Oga Sylas</span>
-                                          </a>
-                                        </div>
-                                        <div className='author-item-count'>
-                                          0
-                                          <span className='author-book'> Published Book</span>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div className='author-time'>
-                                    <div className='author-time-content'>
-                                      <div className='author-item-image'>
-                                        <a className='author-href'href='#'>
-                                          <img decoding='async' className='author-img' src='https://wpbingosite.com/wordpress/bootin/wp-content/uploads/2019/07/Image-8-8.jpg' alt='Peter Paker'></img>
-                                        </a>
-                                      </div>
-                                      <div className='author-con'>
-                                        <div className='author-item-title'>
-                                          <a className='author-a' href=''>
-                                            <span className='author-span'>Peter Paker</span>
-                                          </a>
-                                        </div>
-                                        <div className='author-item-count'>
-                                          0
-                                          <span className='author-book'> Published Book</span>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div className='author-time'>
-                                    <div className='author-time-content'>
-                                      <div className='author-item-image'>
-                                        <a className='author-href'href='#'>
-                                          <img decoding='async' className='author-img' src='https://wpbingosite.com/wordpress/bootin/wp-content/uploads/2019/05/Image-5-5.jpg' alt='Sabela Hupter'></img>
-                                        </a>
-                                      </div>
-                                      <div className='author-con'>
-                                        <div className='author-item-title'>
-                                          <a className='author-a' href=''>
-                                            <span className='author-span'>Sabela Hupter</span>
-                                          </a>
-                                        </div>
-                                        <div className='author-item-count'>
-                                          7
-                                          <span className='author-book'> Published Book</span>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div className='author-time'>
-                                    <div className='author-time-content'>
-                                      <div className='author-item-image'>
-                                        <a className='author-href'href='#'>
-                                          <img decoding='async' className='author-img' src='https://wpbingosite.com/wordpress/bootin/wp-content/uploads/2019/05/Image-6-6.jpg' alt='Susan Merrlin'></img>
-                                        </a>
-                                      </div>
-                                      <div className='author-con'>
-                                        <div className='author-item-title'>
-                                          <a className='author-a' href=''>
-                                            <span className='author-span'>Susan Merrlin</span>
-                                          </a>
-                                        </div>
-                                        <div className='author-item-count'>
-                                          4
-                                          <span className='author-book'> Published Book</span>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                </div>
-              </div>
+    
+
+    <div className="customer-author-container">
+      <div className="customer-author-grid">
+        {currentAuthors.map((author) => (
+          <div key={author.author_id} className="customer-author-card">
+            <div className="customer-author-image-container">
+              <img src={author.url_img} alt={author.author_name} className="customer-author-image" />
             </div>
+            <h2>{author.author_name}</h2>
+            <p>Published Books: {author.published_book}</p>
           </div>
-        </div>
+        ))}
       </div>
+      {/* Pagination */}
+      <ul className="customer-pagination">
+        {Array.from({ length: Math.ceil(authors.length / authorsPerPage) }, (_, index) => (
+          <li key={index} className={`customer-page-item ${currentPage === index + 1 ? 'active' : ''}`}>
+            <button onClick={() => paginate(index + 1)} className="customer-page-link">
+              {index + 1}
+            </button>
+          </li>
+        ))}
+      </ul>
     </div>
-  )
-}
+    <Footer/>
+    </div>
+  );
+};
+
 
 export default Author

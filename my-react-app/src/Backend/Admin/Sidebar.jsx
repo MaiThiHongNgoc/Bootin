@@ -1,6 +1,7 @@
 import React from 'react';
 import { BsCart3, BsGrid1X2Fill, BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsListCheck } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import { RxAvatar } from "react-icons/rx";
 
 function Sidebar({ openSidebarToggle, OpenSidebar }) {
   return (
@@ -26,6 +27,11 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
         <li className='sidebar-list-item'>
           <Link to="/category" className="sidebar-link">
             <BsFillGrid3X3GapFill className='icon' /> Categories
+          </Link>
+        </li>
+        <li className='sidebar-list-item'>
+          <Link to="/authors" className="sidebar-link">
+            <RxAvatar className='icon' /> Authors
           </Link>
         </li>
         <li className='sidebar-list-item'>
