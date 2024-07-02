@@ -7,8 +7,10 @@ const ProductForm = ({ product, onSave }) => {
         author_name: '',
         description: '',
         price: '',
-        category_id: '',
-        imageUrl: ''
+        categories: {
+            category_name: ''
+        },
+        image_url: ''
     });
 
     useEffect(() => {
@@ -18,8 +20,10 @@ const ProductForm = ({ product, onSave }) => {
                 author_name: product.author_name,
                 description: product.description,
                 price: product.price,
-                category_id: product.categoris.category_id ,
-                imageUrl: product.imageUrl
+                categories: {
+                    category_name: product.categories.category_name // Ensure correct property access
+                },
+                image_url: product.image_url
             });
         } else {
             setFormData({
@@ -27,14 +31,30 @@ const ProductForm = ({ product, onSave }) => {
                 author_name: '',
                 description: '',
                 price: '',
-                category_id: '',
-                imageUrl: ''
+                categories: {
+                    category_name: ''
+                },
+                image_url: ''
             });
         }
     }, [product]);
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        if (name === 'category_name') {
+            setFormData(prevState => ({
+                ...prevState,
+                categories: {
+                    ...prevState.categories,
+                    category_name: value
+                }
+            }));
+        } else {
+            setFormData(prevState => ({
+                ...prevState,
+                [name]: value
+            }));
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -46,19 +66,25 @@ const ProductForm = ({ product, onSave }) => {
             } else {
                 await createProduct(formData);
             }
-            setFormData({ product_name: '', author_name: '', description: '', price: '', category_id: '', imageUrl: '' });
+            setFormData({
+                product_name: '',
+                author_name: '',
+                description: '',
+                price: '',
+                categories: {
+                    category_name: ''
+                },
+                image_url: ''
+            });
             onSave();
         } catch (error) {
             if (error.response) {
-                // Yêu cầu đã được gửi và server đã phản hồi với trạng thái không phải là 2xx
                 console.error('Error response:', error.response.data);
                 alert('Error: ' + error.response.data.message);
             } else if (error.request) {
-                // Yêu cầu đã được gửi nhưng không nhận được phản hồi
                 console.error('Error request:', error.request);
                 alert('Error: No response from server.');
             } else {
-                // Xảy ra lỗi khác khi thiết lập yêu cầu
                 console.error('Error message:', error.message);
                 alert('Error: ' + error.message);
             }
@@ -70,7 +96,7 @@ const ProductForm = ({ product, onSave }) => {
             <div>
                 <label>Product Name</label>
                 <input
-                    type="text"
+type="text"
                     name="product_name"
                     value={formData.product_name}
                     onChange={handleChange}
@@ -104,11 +130,11 @@ const ProductForm = ({ product, onSave }) => {
                 />
             </div>
             <div>
-                <label>Category ID</label>
+                <label>Category Name</label>
                 <input
                     type="text"
-                    name="category_id"
-                    value={formData.category_id}
+                    name="category_name"
+                    value={formData.categories.category_name}
                     onChange={handleChange}
                 />
             </div>
@@ -116,8 +142,8 @@ const ProductForm = ({ product, onSave }) => {
                 <label>Image URL</label>
                 <input
                     type="text"
-                    name="imageUrl"
-                    value={formData.imageUrl}
+                    name="image_url"
+                    value={formData.image_url}
                     onChange={handleChange}
                 />
             </div>

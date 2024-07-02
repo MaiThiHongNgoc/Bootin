@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getProducts, deleteProduct } from '../Service/productService';
 import ProductForm from './ProductForm';
+import './ProductList.css'
 
 const ProductList = () => {
     const [products, setProducts] = useState([]);
@@ -59,6 +60,7 @@ const ProductList = () => {
                         <th>Description</th>
                         <th>Price</th>
                         <th>Category</th>
+                        <th>Image</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -70,6 +72,7 @@ const ProductList = () => {
                             <td>{product.description}</td>
                             <td>{product.price}</td>
                             <td>{product.categoris?.category_name}</td>
+                            <td><img src={product.image_url} alt={product.product_name} className="product-image" /></td>
                             <td>
                                 <button className="product-button-edit" onClick={() => handleEdit(product)}>Edit</button>
                                 <button className="product-button-delete" onClick={() => handleDelete(product.product_id)}>Delete</button>
