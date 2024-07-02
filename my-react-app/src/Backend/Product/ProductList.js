@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getProducts, deleteProduct } from '../Service/productService';
 import ProductForm from './ProductForm';
-import './ProductList.css'
+import './ProductList.css';
 
 const ProductList = () => {
     const [products, setProducts] = useState([]);
@@ -68,10 +68,10 @@ const ProductList = () => {
                     {products.map((product) => (
                         <tr key={product.product_id}>
                             <td>{product.product_name}</td>
-                            <td>{product.author_name}</td>
+                            <td>{product.author.author_name}</td>
                             <td>{product.description}</td>
                             <td>{product.price}</td>
-                            <td>{product.categoris?.category_name}</td>
+                            <td>{product.categories.category_name}</td>
                             <td><img src={product.image_url} alt={product.product_name} className="product-image" /></td>
                             <td>
                                 <button className="product-button-edit" onClick={() => handleEdit(product)}>Edit</button>

@@ -4,7 +4,9 @@ import { createProduct, updateProduct } from '../Service/productService';
 const ProductForm = ({ product, onSave }) => {
     const [formData, setFormData] = useState({
         product_name: '',
-        author_name: '',
+        author: {
+            author_name: ''
+        },
         description: '',
         price: '',
         categories: {
@@ -17,18 +19,22 @@ const ProductForm = ({ product, onSave }) => {
         if (product) {
             setFormData({
                 product_name: product.product_name,
-                author_name: product.author_name,
+                author: {
+                    author_name: product.author.author_name
+                },
                 description: product.description,
                 price: product.price,
                 categories: {
-                    category_name: product.categories.category_name // Ensure correct property access
+                    category_name: product.categories.category_name
                 },
                 image_url: product.image_url
             });
         } else {
             setFormData({
                 product_name: '',
-                author_name: '',
+                author: {
+                    author_name: ''
+                },
                 description: '',
                 price: '',
                 categories: {
@@ -41,7 +47,15 @@ const ProductForm = ({ product, onSave }) => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        if (name === 'category_name') {
+        if (name === 'author_name') {
+            setFormData(prevState => ({
+                ...prevState,
+                author: {
+                    ...prevState.author,
+                    author_name: value
+                }
+            }));
+        } else if (name === 'category_name') {
             setFormData(prevState => ({
                 ...prevState,
                 categories: {
@@ -68,7 +82,9 @@ const ProductForm = ({ product, onSave }) => {
             }
             setFormData({
                 product_name: '',
-                author_name: '',
+                author: {
+                    author_name: ''
+                },
                 description: '',
                 price: '',
                 categories: {
@@ -96,7 +112,7 @@ const ProductForm = ({ product, onSave }) => {
             <div>
                 <label>Product Name</label>
                 <input
-type="text"
+                    type="text"
                     name="product_name"
                     value={formData.product_name}
                     onChange={handleChange}
@@ -107,7 +123,7 @@ type="text"
                 <input
                     type="text"
                     name="author_name"
-                    value={formData.author_name}
+                    value={formData.author.author_name}
                     onChange={handleChange}
                 />
             </div>
