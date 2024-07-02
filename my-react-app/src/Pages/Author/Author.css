@@ -1,5 +1,5 @@
 .author-main{
-    width: 1519.2px;
+    width: 100%;
     height: 1555.88px;
     background: 0 0;
     padding-top: 0;
@@ -21,11 +21,11 @@
     padding-left: 15px;
     padding-right: 15px;
     max-width: 100%;
-    width: 1500px;
+    width: 100%;
     /* text-align: center; */
 }
 .author-product{
-    width: 1470px;
+    width: 100%;
     height: 45.5px;
     text-transform: capitalize;
     margin-top: 0;
@@ -90,7 +90,7 @@
     font-weight: 400;
 }
 .author-container{
-    width: 1500px;
+    width: 100%;
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
@@ -116,11 +116,11 @@
     width: 1470px; */
 }
 .author-area{
-    width: 1470px;
+    width: 100%;
     height: 1107.58px;
 }
 .author-site{
-    width: 1470px;
+    width: 100%;
     height: 1107.58px;
 }
 .author-post{
@@ -170,15 +170,15 @@
     height: 503.79px;
 }
 .author-time-content{
-    width: 337.5px;
+    width: 100%;
     height: 503.79px;
 }
 .author-item-image{
-    width: 337.5px;
+    width: 100%;
     height: 425.99px;
 }
 .author-href{
-    width: 337.5px;
+    width: 100%;
     height: 419.59px;
     display: inline-block;
     overflow: hidden;
@@ -201,7 +201,7 @@
     transform: scale(1.1);
 }
 .author-con{
-    width: 337.5px;
+    width: 100%;
     height: 62.8px;
     text-align: center;
     margin-top: 8px;
@@ -223,7 +223,7 @@
     font-family: Merriweather, serif;
 }
 .author-a{
-    width: 116.05px;
+    width: 100%;
     height: 22.4px;
 }
 .author-span{
@@ -234,7 +234,7 @@
     font-family: Merriweather, serif;
     line-height: 1.6;
     text-align: center;
-    width: 116.05px;
+    width: 100%;
     height: 22.4px;
 }
 .author-item-count{
