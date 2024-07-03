@@ -6,10 +6,14 @@ import { getCategories } from '../Service/categoryService';
 const ProductForm = ({ product, onSave }) => {
     const [formData, setFormData] = useState({
         product_name: '',
-        author_id: '', // ID của tác giả được chọn
+        author:{
+            author_id:''
+        }, // ID của tác giả được chọn
         description: '',
         price: '',
-        category_id: '', // ID của danh mục được chọn
+        category:{
+            category_id:''
+        }, // ID của danh mục được chọn
         image_url: ''
     });
 
@@ -26,19 +30,23 @@ const ProductForm = ({ product, onSave }) => {
         if (product) {
             setFormData({
                 product_name: product.product_name,
-                author_id: product.author.author_id,
+                author: {
+                    author_id:product.author.author_id
+                },
                 description: product.description,
                 price: product.price,
-                category_id: product.categories.category_id,
+                category: {
+                    category_id:product.categories.category_id
+                },
                 image_url: product.image_url
             });
         } else {
             setFormData({
                 product_name: '',
-                author_id: '',
+                author: '',
                 description: '',
                 price: '',
-                category_id: '',
+                category: '',
                 image_url: ''
             });
         }
@@ -116,8 +124,8 @@ const ProductForm = ({ product, onSave }) => {
             <div>
                 <label>Author</label>
                 <select
-                    name="author_id"
-                    value={formData.author_id}
+                    name="author"
+                    value={formData.author}
                     onChange={handleChange}
                 >
                     <option value="">Select author...</option>
@@ -149,8 +157,8 @@ const ProductForm = ({ product, onSave }) => {
             <div>
                 <label>Category</label>
                 <select
-                    name="category_id"
-                    value={formData.category_id}
+                    name="category"
+                    value={formData.category}
                     onChange={handleChange}
                 >
                     <option value="">Select category...</option>
