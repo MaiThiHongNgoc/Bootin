@@ -1,52 +1,99 @@
 import React, { useState, useEffect } from 'react';
 import { createProduct, updateProduct } from '../Service/productService';
+import { getAuthors } from '../Service/authorService';
+import { getCategories } from '../Service/categoryService';
 
 const ProductForm = ({ product, onSave }) => {
     const [formData, setFormData] = useState({
         product_name: '',
+<<<<<<< HEAD
         author: {
             author_name: ''
         },
+=======
+        author:{
+            author_id:''
+        }, // ID của tác giả được chọn
+>>>>>>> 220504c8b098302728b0983e6ad1b0922a093198
         description: '',
         price: '',
-        categories: {
-            category_name: ''
-        },
+        category:{
+            category_id:''
+        }, // ID của danh mục được chọn
         image_url: ''
     });
+
+    const [authors, setAuthors] = useState([]);
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        // Load authors and categories initially
+        loadAuthors();
+        loadCategories();
+    }, []);
 
     useEffect(() => {
         if (product) {
             setFormData({
                 product_name: product.product_name,
                 author: {
+<<<<<<< HEAD
                     author_name: product.author.author_name
                 },
                 description: product.description,
                 price: product.price,
                 categories: {
                     category_name: product.categories.category_name
+=======
+                    author_id:product.author.author_id
+                },
+                description: product.description,
+                price: product.price,
+                category: {
+                    category_id:product.categories.category_id
+>>>>>>> 220504c8b098302728b0983e6ad1b0922a093198
                 },
                 image_url: product.image_url
             });
         } else {
             setFormData({
                 product_name: '',
+<<<<<<< HEAD
                 author: {
                     author_name: ''
                 },
+=======
+                author: '',
+>>>>>>> 220504c8b098302728b0983e6ad1b0922a093198
                 description: '',
                 price: '',
-                categories: {
-                    category_name: ''
-                },
+                category: '',
                 image_url: ''
             });
         }
     }, [product]);
 
+    const loadAuthors = async () => {
+        try {
+            const data = await getAuthors();
+            setAuthors(data);
+        } catch (error) {
+            console.error('Failed to fetch authors', error);
+        }
+    };
+
+    const loadCategories = async () => {
+        try {
+            const data = await getCategories();
+            setCategories(data);
+        } catch (error) {
+            console.error('Failed to fetch categories', error);
+        }
+    };
+
     const handleChange = (e) => {
         const { name, value } = e.target;
+<<<<<<< HEAD
         if (name === 'author_name') {
             setFormData(prevState => ({
                 ...prevState,
@@ -69,6 +116,12 @@ const ProductForm = ({ product, onSave }) => {
                 [name]: value
             }));
         }
+=======
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+>>>>>>> 220504c8b098302728b0983e6ad1b0922a093198
     };
 
     const handleSubmit = async (e) => {
@@ -82,14 +135,16 @@ const ProductForm = ({ product, onSave }) => {
             }
             setFormData({
                 product_name: '',
+<<<<<<< HEAD
                 author: {
                     author_name: ''
                 },
+=======
+                author_id: '',
+>>>>>>> 220504c8b098302728b0983e6ad1b0922a093198
                 description: '',
                 price: '',
-                categories: {
-                    category_name: ''
-                },
+                category_id: '',
                 image_url: ''
             });
             onSave();
@@ -119,13 +174,27 @@ const ProductForm = ({ product, onSave }) => {
                 />
             </div>
             <div>
+<<<<<<< HEAD
                 <label>Author Name</label>
                 <input
                     type="text"
                     name="author_name"
                     value={formData.author.author_name}
+=======
+                <label>Author</label>
+                <select
+                    name="author"
+                    value={formData.author}
+>>>>>>> 220504c8b098302728b0983e6ad1b0922a093198
                     onChange={handleChange}
-                />
+                >
+                    <option value="">Select author...</option>
+                    {authors.map(author => (
+                        <option key={author.author_id} value={author.author_id}>
+                            {author.author_name}
+                        </option>
+                    ))}
+                </select>
             </div>
             <div>
                 <label>Description</label>
@@ -146,13 +215,19 @@ const ProductForm = ({ product, onSave }) => {
                 />
             </div>
             <div>
-                <label>Category Name</label>
-                <input
-                    type="text"
-                    name="category_name"
-                    value={formData.categories.category_name}
+                <label>Category</label>
+                <select
+                    name="category"
+                    value={formData.category}
                     onChange={handleChange}
-                />
+                >
+                    <option value="">Select category...</option>
+                    {categories.map(categories => (
+                        <option key={categories.category_id} value={categories.category_id}>
+                            {categories.category_name}
+                        </option>
+                    ))}
+                </select>
             </div>
             <div>
                 <label>Image URL</label>

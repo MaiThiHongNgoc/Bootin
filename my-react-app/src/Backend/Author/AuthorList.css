@@ -1,0 +1,113 @@
+.author-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .author-button-add {
+    background-color: #4CAF50; /* Màu xanh lá cây */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .author-button-add:hover {
+    background-color: #218838; /* Màu xanh lá cây tối */
+  }
+  
+  .author-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .author-table th,
+  .author-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .author-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .author-table td {
+    vertical-align: middle;
+  }
+  
+  .author-image {
+    max-width: 100px;
+    height: auto;
+    border-radius: 50%;
+  }
+  
+  .author-button-edit {
+    background-color: #008CBA; /* Màu xanh dương */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .author-button-edit:hover {
+    background-color: #0056b3; /* Màu xanh dương tối */
+  }
+  
+  .author-button-delete {
+    background-color: #f44336; /* Màu đỏ */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .author-button-delete:hover {
+    background-color: #c82333; /* Màu đỏ tối */
+  }
+  
+  .pagination {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .pagination li {
+    margin: 0 5px;
+  }
+  
+  .pagination button {
+    background-color: #007bff; /* Màu xanh dương */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .pagination button:hover {
+    background-color: #0056b3; /* Màu xanh dương tối */
+  }
+  
+  .pagination .arrow-button {
+    background-color: transparent;
+    color: #007bff; /* Màu xanh dương */
+    border: none;
+    padding: 5px;
+    margin: 0 3px;
+    cursor: pointer;
+  }
+  
+  .pagination .arrow-button:hover {
+    background-color: #f2f2f2;
+  }
+  

@@ -14,7 +14,7 @@ const ProductList = () => {
 
     const loadProducts = async () => {
         try {
-            const response = await getProducts(0);
+            const response = await getProducts(0); // Assuming you have pagination, pass appropriate page number
             setProducts(response.data.content);
         } catch (error) {
             console.error('Failed to fetch products', error);
