@@ -56,7 +56,7 @@ const Footer = () => {
                         <a href='#' className='footer-ss'>Privacy Policy</a>
                       </li>
                       <li className='footer-st'>
-                        <a href='#' className='footer-ss'>About Us</a>
+                        <a href='#' className='footer-ss'>Author</a>
                       </li>
                       <li className='footer-st'>
                         <a href='#' className='footer-ss'>Costumer Service</a>
