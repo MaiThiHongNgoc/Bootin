@@ -11,16 +11,20 @@ const Shop = () => {
   const [productsPerPage] = useState(8); // Number of products per page
 
   useEffect(() => {
-    loadProducts();
-  }, []);
+    loadProducts(currentPage);
+  }, [currentPage]);
 
-  const loadProducts = async () => {
+  const loadProducts = async (page) => {
     try {
-      const data = await getProducts();
-      console.log('Fetched Products:', data); // Log the fetched data
-      setProducts(data);
+      const response = await getProducts(page);
+      // console.log('Fetched Products:', response.data); // Log the fetched response
+
+      // Extract products array from the response data
+      setProducts(response.data.content);
+
     } catch (error) {
       console.error('Failed to fetch products', error);
+      setProducts([]); // Reset to an empty array in case of error
     }
   };
 
@@ -60,13 +64,13 @@ const Shop = () => {
             </tr>
           </thead>
           <tbody>
-            {currentProducts.map((product) => (
+            {products.map((product) => (
               <tr key={product.product_id}>
                 <td>{product.product_name}</td>
-                <td>{product.author.author_name}</td>
+                <td>{product.author?.author_name || 'N/A'}</td>
                 <td>{product.description}</td>
                 <td>{product.price}</td>
-                <td>{product.categories.category_name}</td>
+                <td>{product.categories?.category_name || 'N/A'}</td>
                 <td>
                   <img src={product.image_url} alt={product.product_name} className="product-image" />
                 </td>
