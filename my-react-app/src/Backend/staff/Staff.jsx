@@ -4,7 +4,7 @@ import Header from './Header'
 import Sidebar from './Sidebar'
 import Home from './Home'
 
-function Admin() {
+function Staff() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
 
   const OpenSidebar = () => {
@@ -20,4 +20,4 @@ function Admin() {
   )
 }
 
-export default Admin
+export default Staff;

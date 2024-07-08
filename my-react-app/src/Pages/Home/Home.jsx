@@ -4,11 +4,7 @@ import Header from '../../Component/Header/Header'
 import Slide from './Slider/Slide'
 import Welcome from './Welcome/Welcome'
 import Banner from './Banner/Banner'
-import Gift from './Gift/Gift'
-import Laos from './Laos/Laos'
-import Join from './Join/Join'
 import Footer from '../../Component/Footer/Footer'
-
 
 
 const Home = () => {
@@ -18,9 +14,6 @@ const Home = () => {
       <Slide/>
       <Welcome/>
       <Banner/>
-      <Gift/>
-      <Laos/>
-      <Join/>
       <Footer/>
     </div>
   )

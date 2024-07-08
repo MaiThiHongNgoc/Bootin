@@ -9,7 +9,7 @@ const AuthorForm = ({ author, onSave }) => {
     address: '',
     year_of_birth: '',
     gender: '',
-    published_book: 0,
+    published_book: '',
     url_img: ''
   });
 
@@ -31,7 +31,7 @@ const AuthorForm = ({ author, onSave }) => {
         address: '',
         year_of_birth: '',
         gender: '',
-        published_book: 0,
+        published_book: '',
         url_img: ''
       });
     }
@@ -55,7 +55,7 @@ const AuthorForm = ({ author, onSave }) => {
         address: '',
         year_of_birth: '',
         gender: '',
-        published_book: 0,
+        published_book: '',
         url_img: ''
       });
       onSave();

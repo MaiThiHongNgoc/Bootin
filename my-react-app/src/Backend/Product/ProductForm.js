@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { createProduct, updateProduct } from '../Service/productService';
 import { getAuthors } from '../Service/authorService';
 import { getCategories } from '../Service/categoryService';
+import './ProductForm.css';
 
 const ProductForm = ({ product, onSave }) => {
     const [formData, setFormData] = useState({
@@ -29,10 +30,10 @@ const ProductForm = ({ product, onSave }) => {
         if (product) {
             setFormData({
                 product_name: product.product_name,
-                author: { author_id: product.author.author_id },
+                author: { author_name: product.author.author_id },
                 description: product.description,
                 price: product.price,
-                categories: { category_id: product.categories.category_id },
+                categories: { category_name: product.categories.category_id },
                 image_url: product.image_url
             });
         } else {
@@ -68,12 +69,12 @@ const ProductForm = ({ product, onSave }) => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevState => {
-            if (name === 'author_id') {
+            if (name === 'author_name') {
                 return {
                     ...prevState,
                     author: { ...prevState.author, author_id: value }
                 };
-            } else if (name === 'category_id') {
+            } else if (name === 'category_name') {
                 return {
                     ...prevState,
                     categories: { ...prevState.categories, category_id: value }
@@ -129,7 +130,7 @@ const ProductForm = ({ product, onSave }) => {
             <div>
                 <label>Author</label>
                 <select
-                    name="author_id"
+                    name="author_name"
                     value={formData.author.author_id}
                     onChange={handleChange}
                 >
@@ -162,7 +163,7 @@ const ProductForm = ({ product, onSave }) => {
             <div>
                 <label>Category</label>
                 <select
-                    name="category_id"
+                    name="category_name"
                     value={formData.categories.category_id}
                     onChange={handleChange}
                 >

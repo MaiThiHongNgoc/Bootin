@@ -99,7 +99,7 @@
     top: 11px;
 }
 .footer-mail{
-    right: 23px;
+    right: 15px;
     padding: 0;
     position: relative;
     margin-bottom: 18px;
@@ -107,7 +107,7 @@
 }
 .footer-email{
     position: absolute;
-    left: -6px;
+    left: -15px;
     font-size: 25px;
     top: 12px;
 }
@@ -119,7 +119,7 @@
     margin-bottom: 0;
 }
 .footer-out{
-    right: 40px;
+    right: 30px;
     margin-bottom: 0;
     padding: 0;
     position: relative;
@@ -131,7 +131,7 @@
     top: 12px;
     font-size: 25px;
     position: absolute;
-    left: 10px;
+    left: 0px;
 
 }
 .footer-padding_2{

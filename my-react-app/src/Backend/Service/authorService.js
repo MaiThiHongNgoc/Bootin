@@ -14,11 +14,7 @@ export const getAuthors = async () => {
 
 export const addAuthor = async (author) => {
   try {
-    const response = await axios.post(API_URL, author, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    const response = await axios.post(API_URL, author);
     return response.data;
   } catch (error) {
     console.error('Failed to add author', error);
@@ -26,13 +22,9 @@ export const addAuthor = async (author) => {
   }
 };
 
-export const updateAuthor = async (author) => {
+export const updateAuthor = async (id,author) => {
   try {
-    const response = await axios.put(`${API_URL}${author.author_id}`, author, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    const response = await axios.put(`${API_URL}${id}`, author);
     return response.data;
   } catch (error) {
     console.error('Failed to update author', error);

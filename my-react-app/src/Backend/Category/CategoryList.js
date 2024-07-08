@@ -8,6 +8,7 @@ const CategoryList = () => {
     const [categories, setCategories] = useState([]);
     const [editingCategory, setEditingCategory] = useState(null);
     const [showForm, setShowForm] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
   
     useEffect(() => {
       loadCategories();
@@ -35,6 +36,13 @@ const CategoryList = () => {
         console.error('Failed to delete category', error);
       }
     };
+    const handleSearchChange = (e) => {
+      setSearchQuery(e.target.value);
+  };
+
+  const filteredCategories = categories.filter(category => 
+      category.category_name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   
     const handleAddCategory = () => {
       setEditingCategory(null);
@@ -53,6 +61,13 @@ const CategoryList = () => {
           Add Category
         </button>
         {showForm && <CategoryForm category={editingCategory} onSave={handleFormClose} />}
+        <input
+                type="text"
+                placeholder="Search products..."
+                value={searchQuery}
+                onChange={handleSearchChange}
+                className="category-search"
+            />
         <table className="category-table">
           <thead>
             <tr>
@@ -62,7 +77,7 @@ const CategoryList = () => {
             </tr>
           </thead>
           <tbody>
-            {categories.map((category) => (
+            {filteredCategories.map((category) => (
               <tr key={category.category_id}>
                 <td>{category.category_name}</td>
                 <td>{category.description}</td>

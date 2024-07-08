@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'; 
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './App.css';
 //import axios from 'axios';
 
@@ -22,6 +22,9 @@ import UserList from "./Backend/User/UserList";
 import CategoryList from "./Backend/Category/CategoryList";
 import AuthorList from "./Backend/Author/AuthorList";
 import ProductList from "./Backend/Product/ProductList";
+import OrderList from "./Backend/order/orderList";
+import OrderDetailList from "./Backend/orderDetail/orderDetailList";
+import Staff from "./Backend/staff/Staff";
 
 
 function App() {
@@ -44,16 +47,18 @@ function App() {
           <Route path="/category" element={<CategoryList />} />
           <Route path="/authors" element={<AuthorList />} />
           <Route path="/products" element={<ProductList />} />
-          
+          <Route path="/order" element={<OrderList />} />
+          <Route path="/orderdetail" element={<OrderDetailList />} />
+
+
+          <Route path="/staff" element={<Staff />} />
 
 
 
 
-          
-          
         </Routes>
       </BrowserRouter>
-      
+
     </div>
   );
 }

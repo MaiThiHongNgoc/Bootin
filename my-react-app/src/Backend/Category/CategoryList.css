@@ -3,9 +3,10 @@
   }
   
   .category-table {
-    width: 100%;
+    width: 50%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 30px;
+    margin: 0 auto;
   }
   
   .category-table,
@@ -32,6 +33,7 @@
     color: white;
     border: none;
     cursor: pointer;
+    margin-right: 20px;
   }
   
   .category-button-edit,
@@ -52,3 +54,11 @@
     background-color: #f44336; /* Red */
     color: white;
   }
+  .category-search {
+    width: 20%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}

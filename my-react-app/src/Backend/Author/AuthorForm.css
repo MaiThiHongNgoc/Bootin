@@ -15,7 +15,7 @@
     display: block;
   }
   
-  .author-form input {
+  .author-form input{ 
     width: calc(100% - 12px);
     padding: 8px;
     margin-bottom: 10px;
@@ -25,7 +25,12 @@
   }
   
   .author-form input[type="number"] {
-    width: auto;
+    width: calc(100% - 12px);
+    padding: 8px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
   }
   
   .author-form .form-actions {
