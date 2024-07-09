@@ -198,7 +198,7 @@ const Footer = () => {
                         <a href='#' className='footer-ef'>
                            Bootin 
                         </a>
-                           - Made by Wpbingo
+                           - Made by Nhom1
                       </p>
                     </div>
                   </div>
