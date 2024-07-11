@@ -22,7 +22,7 @@ import UserList from "./Backend/User/UserList";
 import CategoryList from "./Backend/Category/CategoryList";
 import AuthorList from "./Backend/Author/AuthorList";
 import ProductList from "./Backend/Product/ProductList";
-import OrderList from "./Backend/order/orderList";
+import OrderList from "./Backend/Order/orderList";
 import OrderDetailList from "./Backend/orderDetail/orderDetailList";
 import Staff from "./Backend/staff/Staff";
 
