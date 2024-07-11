@@ -123,6 +123,7 @@ const OrderList = () => {
                         <tr>
                             <th>Order ID</th>
                             <th>Customer Name</th>
+                            <th>addres</th>
                             <th>Order Date</th>
                             <th>Total Amount</th>
                             <th>Status</th>
@@ -135,7 +136,8 @@ const OrderList = () => {
                             <tr key={order.order_id}>
                                 <td>{order.order_id}</td>
                                 <td>{order.user.username}</td>
-                                <td>{order.order_date}</td>
+                                <td>{order.address}</td>
+                                <td>{new Date(order.order_date).toUTCString()}</td>
                                 <td>{order.total_amount}</td>
                                 <td>
                                     <select

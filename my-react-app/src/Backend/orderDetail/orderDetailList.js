@@ -74,6 +74,9 @@ const OrderDetailList = () => {
                     <tr>
                         <th>OrderDetail ID</th>
                         <th>User Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
                         <th>Product Name</th>
                         <th>Quantity</th>
                         <th>Price</th>
@@ -89,6 +92,9 @@ const OrderDetailList = () => {
                         <tr key={orderDetail.order_detail_id}>
                             <td>{orderDetail.order_detail_id}</td>
                             <td>{orderDetail.orders.user.username}</td>
+                            <td>{orderDetail.orders.user.email}</td>
+                            <td>{orderDetail.orders.user.phone}</td>
+                            <td>{orderDetail.orders.address}</td>
                             <td>{orderDetail.products.product_name}</td>
                             <td>{orderDetail.quantity}</td>
                             <td>{orderDetail.products.price}/1</td>

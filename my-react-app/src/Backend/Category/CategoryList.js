@@ -71,16 +71,16 @@ const CategoryList = () => {
         <table className="category-table">
           <thead>
             <tr>
+            <th>Category ID</th>
               <th>Category Name</th>
-              <th>Description</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             {filteredCategories.map((category) => (
               <tr key={category.category_id}>
+                <td>{category.category_id}</td>
                 <td>{category.category_name}</td>
-                <td>{category.description}</td>
                 <td>
                   <button className="category-button-edit" onClick={() => handleEdit(category)}>
                     Edit

@@ -102,11 +102,11 @@ const ProductList = () => {
                             {filteredProducts.map((product) => (
                                 <tr key={product.product_id}>
                                     <td>{product.product_name}</td>
-                                    <td>{product.author.author_id}</td>
+                                    <td>{product.author.author_name}</td>
                                     <td>{product.description}</td>
                                     <td>{product.price}</td>
-                                    <td>{product.categories.category_id}</td>
-                                    <td><img src={product.image_url} alt={product.product_name} className="product-image" /></td>
+                                    <td>{product.categories.category_name}</td>
+                                    <td><img src={product.img_product.img_url} alt={product.product_name} className="product-image" /></td>
                                     <td>
                                         <button className="product-button-edit" onClick={() => handleEdit(product)}>Edit</button>
                                         <button className="product-button-delete" onClick={() => handleDelete(product.product_id)}>Delete</button>

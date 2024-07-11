@@ -18,6 +18,7 @@
   
   .user-form input[type="text"],
   .user-form input[type="email"],
+  .user-form input[type="number"],
   .user-form input[type="password"] {
     padding: 10px;
     font-size: 16px;

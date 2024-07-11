@@ -14,9 +14,9 @@ const OrderDetailForm = ({ orderDetail, onSave }) => {
     useEffect(() => {
         if (orderDetail) {
             setFormData({
-                orders: { order_id: orderDetail.orders.order_id || '' },
-                products: { product_id: orderDetail.products.product_id || '' },
-                quantity: orderDetail.quantity || ''
+                orders: { order_id: orderDetail.orders.order_id},
+                products: { product_id: orderDetail.products.product_id},
+                quantity: orderDetail.quantity
             });
         } else {
             setFormData({

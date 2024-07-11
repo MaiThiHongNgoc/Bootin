@@ -10,4 +10,8 @@ const updateOrder = (id, order) => axios.put(`${API_URL}${id}`, order);
 
 const deleteOrder = (order_id) => axios.delete(`${API_URL}${order_id}`);
 
-export { getOrder, createOrder, updateOrder, deleteOrder };
+const fetchPaymentMethods = () => {
+    return axios.get('http://localhost:9191/api/paymentmethods/v1/');
+};
+
+export { getOrder, createOrder, updateOrder, deleteOrder, fetchPaymentMethods };

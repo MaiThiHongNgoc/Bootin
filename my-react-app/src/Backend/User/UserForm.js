@@ -7,7 +7,10 @@ const UserForm = ({ user, onSave }) => {
     username: '',
     email: '',
     password: '',
-    role: 'customer',
+    phone: '',
+    role: {
+      role_id: 2
+    },
   });
 
   useEffect(() => {
@@ -15,15 +18,19 @@ const UserForm = ({ user, onSave }) => {
       setFormData({
         username: user.username,
         email: user.email,
-        password: '',  // Do not pre-fill the password
-        role: user.role,
+        password: '',
+        phone: user.phone,  
+        role: { role_id: user.role.role_id },
       });
     } else {
       setFormData({
         username: '',
         email: '',
         password: '',
-        role: 'customer',
+        phone: '',
+        role: {
+          role_id: 2
+        },
       });
     }
   }, [user]);
@@ -40,7 +47,7 @@ const UserForm = ({ user, onSave }) => {
       } else {
         await createUser(formData);
       }
-      setFormData({ username: '', email: '', password: '', role: 'customer' });
+      setFormData({ username: '', email: '', phone: '', password: '', role:{role_id: 2} });
       onSave();
     } catch (error) {
       console.error('Failed to save user', error);
@@ -65,6 +72,15 @@ const UserForm = ({ user, onSave }) => {
           name="email"
           value={formData.email}
           onChange={handleChange}
+        />
+      </div>
+      <div>
+        <label>Phone</label>
+        <input
+        type="number"
+        name="phone"
+        value={formData.phone}
+        onChange={handleChange}
         />
       </div>
       <div>

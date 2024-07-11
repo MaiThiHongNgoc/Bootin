@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import './Admin.css'
+import './Staff.css'
 import Header from './Header'
 import Sidebar from './Sidebar'
-import Home from './Home'
+import OrderDetailList from '../orderDetail/orderDetailList'
 
 function Staff() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
@@ -15,7 +15,7 @@ function Staff() {
     <div className='grid-container'>
       <Header OpenSidebar={OpenSidebar} />
       <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar} />
-      <Home />
+      <OrderDetailList/>
     </div>
   )
 }

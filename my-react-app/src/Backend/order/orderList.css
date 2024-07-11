@@ -57,3 +57,27 @@
     border-radius: 4px;
     font-size: 16px;
   }
+/* orderForm.css */
+.select-pending {
+  background-color: yellow;
+}
+
+.select-completed {
+  background-color: green;
+}
+
+.select-cancelled {
+  background-color: red;
+}
+
+.option-pending {
+  background-color: yellow;
+}
+
+.option-completed {
+  background-color: green;
+}
+
+.option-cancelled {
+  background-color: red;
+}

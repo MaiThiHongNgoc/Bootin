@@ -82,6 +82,7 @@ const UserList = () => {
           <tr>
             <th>Username</th>
             <th>Email</th>
+            <th>Phone</th>
             <th>Role</th>
             <th>Actions</th>
           </tr>
@@ -91,16 +92,8 @@ const UserList = () => {
             <tr key={user.user_id}>
               <td>{user.username}</td>
               <td>{user.email}</td>
-              <td>
-                <select
-                  value={user.role}
-                  onChange={(e) => handleRoleChange(user, e.target.value)}
-                >
-                  <option value="customer">Customer</option>
-                  <option value="admin">Admin</option>
-                  <option value="staff">Staff</option>
-                </select>
-              </td>
+              <td>{user.phone}</td>
+              <td>{user.role.role_name}</td>
               <td>
                 <button className="user-list-button-edit" onClick={() => handleEdit(user)}>Edit</button>
                 <button className="user-list-button-delete" onClick={() => handleDelete(user.user_id)}>Delete</button>

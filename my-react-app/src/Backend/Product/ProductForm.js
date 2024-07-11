@@ -7,15 +7,11 @@ import './ProductForm.css';
 const ProductForm = ({ product, onSave }) => {
     const [formData, setFormData] = useState({
         product_name: '',
-        author: {
-            author_id: ''
-        },
+        author: { author_id: '' },
         description: '',
         price: '',
-        categories: {
-            category_id: ''
-        },
-        image_url: ''
+        categories: { category_id: '' },
+        img_product: { img_id: '' }
     });
 
     const [authors, setAuthors] = useState([]);
@@ -30,11 +26,11 @@ const ProductForm = ({ product, onSave }) => {
         if (product) {
             setFormData({
                 product_name: product.product_name,
-                author: { author_name: product.author.author_id },
+                author: { author_id: product.author.author_id },
                 description: product.description,
                 price: product.price,
-                categories: { category_name: product.categories.category_id },
-                image_url: product.image_url
+                categories: { category_id: product.categories.category_id },
+                img_product: { img_id: product.img_product.img_id }
             });
         } else {
             setFormData({
@@ -43,7 +39,7 @@ const ProductForm = ({ product, onSave }) => {
                 description: '',
                 price: '',
                 categories: { category_id: '' },
-                image_url: ''
+                img_product: { img_id: '' }
             });
         }
     }, [product]);
@@ -63,21 +59,26 @@ const ProductForm = ({ product, onSave }) => {
             setCategories(data);
         } catch (error) {
             console.error('Failed to fetch categories', error);
-        }
+        }   
     };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevState => {
-            if (name === 'author_name') {
+            if (name === 'author_id') {
                 return {
                     ...prevState,
                     author: { ...prevState.author, author_id: value }
                 };
-            } else if (name === 'category_name') {
+            } else if (name === 'category_id') {
                 return {
                     ...prevState,
                     categories: { ...prevState.categories, category_id: value }
+                };
+            } else if (name === 'img_id') {
+                return {
+                    ...prevState,
+                    img_product: { ...prevState.img_product, img_id: value }
                 };
             } else {
                 return { ...prevState, [name]: value };
@@ -99,7 +100,7 @@ const ProductForm = ({ product, onSave }) => {
                 description: '',
                 price: '',
                 categories: { category_id: '' },
-                image_url: ''
+                img_product: { img_id: '' }
             });
             onSave();
         } catch (error) {
@@ -130,7 +131,7 @@ const ProductForm = ({ product, onSave }) => {
             <div>
                 <label>Author</label>
                 <select
-                    name="author_name"
+                    name="author_id"
                     value={formData.author.author_id}
                     onChange={handleChange}
                 >
@@ -163,7 +164,7 @@ const ProductForm = ({ product, onSave }) => {
             <div>
                 <label>Category</label>
                 <select
-                    name="category_name"
+                    name="category_id"
                     value={formData.categories.category_id}
                     onChange={handleChange}
                 >
@@ -176,11 +177,11 @@ const ProductForm = ({ product, onSave }) => {
                 </select>
             </div>
             <div>
-                <label>Image URL</label>
+                <label>Image ID</label>
                 <input
-                    type="text"
-                    name="image_url"
-                    value={formData.image_url}
+                    type="number"
+                    name="img_id"
+                    value={formData.img_product.img_id}
                     onChange={handleChange}
                 />
             </div>

@@ -4,20 +4,17 @@ import './CategoryForm.css'
 
 const CategoryForm = ({ category, onSave }) => {
     const [formData, setFormData] = useState({
-      category_name: '',
-      description: '',
+      category_name: ''
     });
   
     useEffect(() => {
       if (category) {
         setFormData({
-          category_name: category.category_name,
-          description: category.description,
+          category_name: category.category_name
         });
       } else {
         setFormData({
-          category_name: '',
-          description: '',
+          category_name: ''
         });
       }
     }, [category]);
@@ -34,7 +31,7 @@ const CategoryForm = ({ category, onSave }) => {
         } else {
           await createCategory(formData);
         }
-        setFormData({ category_name: '', description: '' });
+        setFormData({ category_name: ''});
         onSave();
       } catch (error) {
         console.error('Failed to save category', error);
@@ -49,16 +46,6 @@ const CategoryForm = ({ category, onSave }) => {
             type="text"
             name="category_name"
             value={formData.category_name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Description</label>
-          <input
-            type="text"
-            name="description"
-            value={formData.description}
             onChange={handleChange}
             required
           />
