@@ -3,8 +3,8 @@ import axios from 'axios';
 const API_URL = 'http://localhost:9191/api/products/v1/';
 
 // Lấy danh sách sản phẩm theo trang
-export const getProducts = (page) => {
-    return axios.get(`${API_URL}?p=${page}`);
+export const getProducts =  async (page = 0) => {
+    return  axios.get(`${API_URL}?p=${page}`);
 };
 
 // Lấy chi tiết sản phẩm theo ID
