@@ -168,6 +168,7 @@ const Shop = () => {
                       <img src={product.img_product.img_url} alt={product.product_name} className="customer-shop-image" />
                     </div>
                     <h2>{product.product_name}</h2>
+                    <p>{product.author.author_name}</p>
                     <p>Price: ${product.price}</p>
                   </div>
                 ))}

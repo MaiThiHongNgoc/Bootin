@@ -8,6 +8,7 @@ import Gift from './Gift/Gift'
 import Join from './Join/Join'
 import Laos from './Laos/Laos'
 import Footer from '../../Component/Footer/Footer'
+import OurBookStore from './OurBookStore/OurBookStore'
 
 
 const Home = () => {
@@ -17,7 +18,7 @@ const Home = () => {
       <Slide/>
       <Welcome/>
       <Banner/>
-      {/* <OurBookStore/> */}
+      <OurBookStore/>
       <Gift/>
       <Laos/>
       <Join/>
