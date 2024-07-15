@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getProducts } from '../../Backend/Service/productService';
 import { getCategories } from '../../Backend/Service/categoryService';
 import { getAuthors } from '../../Backend/Service/authorService';
+import { IoSearch } from "react-icons/io5";
 import Header from '../../Component/Header/Header';
 import Footer from '../../Component/Footer/Footer';
 import './Shop.css';
@@ -15,7 +16,7 @@ const Shop = () => {
   const [productsPerPage] = useState(8); // Number of products per page
   const [totalPages, setTotalPages] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [selectedPriceRange, setSelectedPriceRange] = useState('');
+  const [selectedPriceRange, setSelectedPriceRange] = useState([0, 1000]);
   const [selectedAuthor, setSelectedAuthor] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(false);
@@ -68,7 +69,8 @@ const Shop = () => {
   };
 
   const handlePriceChange = (event) => {
-    setSelectedPriceRange(event.target.value);
+    const value = event.target.value;
+    setSelectedPriceRange([0, value]);
   };
 
   const handleAuthorChange = (event) => {
@@ -80,7 +82,7 @@ const Shop = () => {
   };
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
+  
   return (
     <div>
       <Header />
@@ -107,6 +109,9 @@ const Shop = () => {
               onChange={handleSearchChange}
               className="shop-search-input"
             />
+            <button className='shop-btn'>
+              <i className='shop-icon'><IoSearch /></i>
+            </button>
           </div>
           <div className="shop-filter">
             <h3>Categories</h3>
@@ -127,20 +132,29 @@ const Shop = () => {
           </div>
           <div className="shop-filter">
             <h3>Price</h3>
-            <select onChange={handlePriceChange} className="shop-filter-select">
-              <option value="">All Prices</option>
-              <option value="0-50">$0 - $50</option>
-              <option value="51-100">$51 - $100</option>
-              <option value="101-200">$101 - $200</option>
-              <option value="201-500">$201 - $500</option>
-              <option value="501-1000">$501 - $1000</option>
-            </select>
+            <div className='shop-div'>
+              <div className='shop-em'>
+            <input 
+              type="range" 
+              min="0" 
+              max="1000" 
+              step="50" 
+              value={selectedPriceRange[1]}
+              onChange={handlePriceChange} 
+              className="shop-filter-range"
+            />
+            </div>
+            <span id="price-display">$0 - ${selectedPriceRange[1]}</span>
+            </div>
           </div>
           <div className="shop-filter">
             <h3>Authors</h3>
-            <ul>
+            <ul className='shop-ul'>
               <li>
-                <button onClick={() => handleAuthorChange({ target: { value: '' } })} className="shop-filter-button">
+                <span>
+                  <input className='shop-ton' value="anna-hillton" name='filter_author' type='checkbox'/>
+                </span>
+                <button onClick={() => handleAuthorChange({ target: { value: '' } })} className="shop-filter-ton">
                   All Authors
                 </button>
               </li>
@@ -168,7 +182,6 @@ const Shop = () => {
                       <img src={product.imgProducts[0]?.img_url} alt={product.product_name} className="customer-shop-image" />
                     </div>
                     <h2>{product.product_name}</h2>
-                    <p>{product.author.author_name}</p>
                     <p>Price: ${product.price}</p>
                   </div>
                 ))}
