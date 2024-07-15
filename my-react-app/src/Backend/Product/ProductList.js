@@ -21,7 +21,7 @@ const ProductList = () => {
         setLoading(true);
         setError('');
         try {
-            const response = await getProducts(page - 1); // Adjust page number for pagination
+            const response = await getProducts(page - 1, productsPerPage); // Adjust page number for pagination
             setProducts(response.data.content);
         } catch (error) {
             console.error('Failed to fetch products', error);
@@ -106,7 +106,11 @@ const ProductList = () => {
                                     <td>{product.description}</td>
                                     <td>{product.price}</td>
                                     <td>{product.categories.category_name}</td>
-                                    <td><img src={product.img_product.img_url} alt={product.product_name} className="product-image" /></td>
+                                    <td>
+                                        {product.imgProducts && product.imgProducts.map(img => (
+                                            <img key={img.img_id} src={img.img_url} alt={img.img_name} className="product-image" />
+                                        ))}
+                                    </td>
                                     <td>
                                         <button className="product-button-edit" onClick={() => handleEdit(product)}>Edit</button>
                                         <button className="product-button-delete" onClick={() => handleDelete(product.product_id)}>Delete</button>

@@ -31,7 +31,7 @@ const Shop = () => {
     setLoading(true);
     setError('');
     try {
-      const response = await getProducts(page - 1); // Adjust page number for pagination
+      const response = await getProducts(page - 1, category, priceRange, author, search); // Adjust page number for pagination
       const { content, totalPages } = response.data;
       setProducts(Array.isArray(content) ? content : []);
       setTotalPages(totalPages || 0);
@@ -118,7 +118,7 @@ const Shop = () => {
               </li>
               {categories.map(category => (
                 <li key={category.category_id}>
-                  <button onClick={() => handleCategoryChange({ target: { value: category.category_name } })} className="shop-filter-button">
+                  <button onClick={() => handleCategoryChange({ target: { value: category.category_id } })} className="shop-filter-button">
                     {category.category_name}
                   </button>
                 </li>
@@ -146,7 +146,7 @@ const Shop = () => {
               </li>
               {authors.map(author => (
                 <li key={author.author_id}>
-                  <button onClick={() => handleAuthorChange({ target: { value: author.author_name } })} className="shop-filter-button">
+                  <button onClick={() => handleAuthorChange({ target: { value: author.author_id } })} className="shop-filter-button">
                     {author.author_name}
                   </button>
                 </li>
@@ -165,7 +165,7 @@ const Shop = () => {
                 {products.map((product) => (
                   <div key={product.product_id} className="customer-shop-card">
                     <div className="customer-shop-image-container">
-                      <img src={product.img_product.img_url} alt={product.product_name} className="customer-shop-image" />
+                      <img src={product.imgProducts[0]?.img_url} alt={product.product_name} className="customer-shop-image" />
                     </div>
                     <h2>{product.product_name}</h2>
                     <p>{product.author.author_name}</p>

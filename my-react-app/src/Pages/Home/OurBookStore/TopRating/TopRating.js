@@ -28,22 +28,19 @@ const TopRating = () => {
   };
 
   return (
-    <div>
-      <div className='random-products-title'>
-        <h1 className='random-products-header'>Random Products</h1>
-      </div>
-      <div className="random-products-container">
-        {loading && <p>Loading...</p>}
-        {error && <p>{error}</p>}
-        <div className="random-products-grid">
+    <div className='top-rating'>
+      <div className="top-rating-container">
+        {loading && <p className="top-rating-loading">Loading...</p>}
+        {error && <p className="top-rating-error">{error}</p>}
+        <div className="top-rating-grid">
           {products.map((product) => (
-            <div key={product.product_id} className="random-products-card">
-              <div className="random-products-image-container">
-                <img src={product.img_product.img_url} alt={product.product_name} className="random-products-image" />
+            <div key={product.product_id} className="top-rating-card">
+              <div className="top-rating-image-container">
+                <img src={product.imgProducts[0]?.img_url} alt={product.product_name} className="top-rating-image" />
               </div>
-              <h2>{product.product_name}</h2>
-              <p>{product.author.author_name}</p>
-              <p>Price: ${product.price}</p>
+              <h2 className="top-rating-product-name">{product.product_name}</h2>
+              <p className="top-rating-author-name">{product.author.author_name}</p>
+              <p className="top-rating-price">Price: ${product.price}</p>
             </div>
           ))}
         </div>

@@ -13,7 +13,10 @@ import Shop from './Pages/Shop/Shop';
 import Blog from './Pages/Blog/Blog';
 import Author from './Pages/Author/Author';
 import Contact from './Pages/Contact/Contact';
-import PageNotFound from './Pages/404'
+import PageNotFound from './Pages/404';
+import TopRating from "./Pages/Home/OurBookStore/TopRating/TopRating";
+import BestSellers from "./Pages/Home/OurBookStore/BestSellers/BestSellers";
+import Featured from "./Pages/Home/OurBookStore/Featured/Featured";
 
 
 
@@ -32,12 +35,18 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} >
+          <Route path="topRating" element={<TopRating />} />
+          <Route path="bestSeller" element={<BestSellers />} />
+          <Route path="featured" element={<Featured />} />
+          </Route>
+
           <Route path="/shop" element={<Shop />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/author" element={<Author />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/404" element={<PageNotFound />} />
+          
 
 
 

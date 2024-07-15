@@ -11,7 +11,7 @@ const ProductForm = ({ product, onSave }) => {
         description: '',
         price: '',
         categories: { category_id: '' },
-        img_product: { img_id: '' }
+        imgProducts: [{ img_id: '' }]
     });
 
     const [authors, setAuthors] = useState([]);
@@ -30,7 +30,7 @@ const ProductForm = ({ product, onSave }) => {
                 description: product.description,
                 price: product.price,
                 categories: { category_id: product.categories.category_id },
-                img_product: { img_id: product.img_product.img_id }
+                imgProducts: product.imgProducts.length > 0 ? product.imgProducts : [{ img_id: '' }]
             });
         } else {
             setFormData({
@@ -39,7 +39,7 @@ const ProductForm = ({ product, onSave }) => {
                 description: '',
                 price: '',
                 categories: { category_id: '' },
-                img_product: { img_id: '' }
+                imgProducts: [{ img_id: '' }]
             });
         }
     }, [product]);
@@ -75,15 +75,32 @@ const ProductForm = ({ product, onSave }) => {
                     ...prevState,
                     categories: { ...prevState.categories, category_id: value }
                 };
-            } else if (name === 'img_id') {
+            } else if (name.startsWith('img_id')) {
+                const index = parseInt(name.split('_')[1], 10);
+                const updatedImgProducts = [...prevState.imgProducts];
+                updatedImgProducts[index] = { img_id: value };
                 return {
                     ...prevState,
-                    img_product: { ...prevState.img_product, img_id: value }
+                    imgProducts: updatedImgProducts
                 };
             } else {
                 return { ...prevState, [name]: value };
             }
         });
+    };
+
+    const handleAddImageField = () => {
+        setFormData(prevState => ({
+            ...prevState,
+            imgProducts: [...prevState.imgProducts, { img_id: '' }]
+        }));
+    };
+
+    const handleRemoveImageField = (index) => {
+        setFormData(prevState => ({
+            ...prevState,
+            imgProducts: prevState.imgProducts.filter((_, i) => i !== index)
+        }));
     };
 
     const handleSubmit = async (e) => {
@@ -100,7 +117,7 @@ const ProductForm = ({ product, onSave }) => {
                 description: '',
                 price: '',
                 categories: { category_id: '' },
-                img_product: { img_id: '' }
+                imgProducts: [{ img_id: '' }]
             });
             onSave();
         } catch (error) {
@@ -177,13 +194,19 @@ const ProductForm = ({ product, onSave }) => {
                 </select>
             </div>
             <div>
-                <label>Image ID</label>
-                <input
-                    type="number"
-                    name="img_id"
-                    value={formData.img_product.img_id}
-                    onChange={handleChange}
-                />
+                <label>Images</label>
+                {formData.imgProducts.map((img, index) => (
+                    <div key={index} className="image-field">
+                        <input
+                            type="number"
+                            name={`img_id_${index}`}
+                            value={img.img_id}
+                            onChange={handleChange}
+                        />
+                        <button type="button" onClick={() => handleRemoveImageField(index)}>Remove</button>
+                    </div>
+                ))}
+                <button type="button" onClick={handleAddImageField}>Add Image</button>
             </div>
             <button className="product-form-button-save" type="submit">Save</button>
         </form>
