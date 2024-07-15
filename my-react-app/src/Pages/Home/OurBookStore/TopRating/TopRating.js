@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getProducts } from '../../../../Backend/Service/productService';
 import './TopRating.css';
+import { FiSearch, FiHeart, FiShoppingCart } from 'react-icons/fi'; // Import icons from react-icons
 
 const TopRating = () => {
   const [products, setProducts] = useState([]);
@@ -27,6 +28,21 @@ const TopRating = () => {
     }
   };
 
+  const handleSearchClick = (product) => {
+    // Handle search click logic
+    console.log('Search clicked for:', product);
+  };
+
+  const handleFavoriteClick = (product) => {
+    // Handle favorite click logic
+    console.log('Favorite clicked for:', product);
+  };
+
+  const handleCartClick = (product) => {
+    // Handle cart click logic
+    console.log('Add to cart clicked for:', product);
+  };
+
   return (
     <div className='top-rating'>
       <div className="top-rating-container">
@@ -37,6 +53,17 @@ const TopRating = () => {
             <div key={product.product_id} className="top-rating-card">
               <div className="top-rating-image-container">
                 <img src={product.imgProducts[0]?.img_url} alt={product.product_name} className="top-rating-image" />
+                <div className="top-rating-icons">
+                  <button onClick={() => handleSearchClick(product)}>
+                    <FiSearch />
+                  </button>
+                  <button onClick={() => handleFavoriteClick(product)}>
+                    <FiHeart />
+                  </button>
+                  <button onClick={() => handleCartClick(product)}>
+                    <FiShoppingCart />
+                  </button>
+                </div>
               </div>
               <h2 className="top-rating-product-name">{product.product_name}</h2>
               <p className="top-rating-author-name">{product.author.author_name}</p>
