@@ -2,6 +2,7 @@
   text-align: center;
   padding: 20px;
   margin-top: 80px;
+  margin-bottom: 50px;
 }
 
 .our-book-store h1 {
@@ -59,6 +60,7 @@
   width: calc(100% - 65%); /* Adjust width based on gap */
   height: 1.75px;
   background-color: lightgray;
+ 
 }
 
 .our-book-store-link.active {

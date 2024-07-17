@@ -11,7 +11,7 @@ const ProductForm = ({ product, onSave }) => {
         description: '',
         price: '',
         categories: { category_id: '' },
-        imgProducts: [{ img_id: '' }]
+        //imgProducts: [{ img_id: '' }]
     });
 
     const [authors, setAuthors] = useState([]);
@@ -30,7 +30,7 @@ const ProductForm = ({ product, onSave }) => {
                 description: product.description,
                 price: product.price,
                 categories: { category_id: product.categories.category_id },
-                imgProducts: product.imgProducts.length > 0 ? product.imgProducts : [{ img_id: '' }]
+                //imgProducts: product.imgProducts.length > 0 ? product.imgProducts : [{ img_id: '' }]
             });
         } else {
             setFormData({
@@ -39,7 +39,7 @@ const ProductForm = ({ product, onSave }) => {
                 description: '',
                 price: '',
                 categories: { category_id: '' },
-                imgProducts: [{ img_id: '' }]
+                //imgProducts: [{ img_id: '' }]
             });
         }
     }, [product]);
@@ -89,19 +89,19 @@ const ProductForm = ({ product, onSave }) => {
         });
     };
 
-    const handleAddImageField = () => {
-        setFormData(prevState => ({
-            ...prevState,
-            imgProducts: [...prevState.imgProducts, { img_id: '' }]
-        }));
-    };
+    // const handleAddImageField = () => {
+    //     setFormData(prevState => ({
+    //         ...prevState,
+    //         imgProducts: [...prevState.imgProducts, { img_id: '' }]
+    //     }));
+    // };
 
-    const handleRemoveImageField = (index) => {
-        setFormData(prevState => ({
-            ...prevState,
-            imgProducts: prevState.imgProducts.filter((_, i) => i !== index)
-        }));
-    };
+    // const handleRemoveImageField = (index) => {
+    //     setFormData(prevState => ({
+    //         ...prevState,
+    //         imgProducts: prevState.imgProducts.filter((_, i) => i !== index)
+    //     }));
+    // };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -193,7 +193,7 @@ const ProductForm = ({ product, onSave }) => {
                     ))}
                 </select>
             </div>
-            <div>
+            {/* <div>
                 <label>Images</label>
                 {formData.imgProducts.map((img, index) => (
                     <div key={index} className="image-field">
@@ -207,7 +207,7 @@ const ProductForm = ({ product, onSave }) => {
                     </div>
                 ))}
                 <button type="button" onClick={handleAddImageField}>Add Image</button>
-            </div>
+            </div> */}
             <button className="product-form-button-save" type="submit">Save</button>
         </form>
     );

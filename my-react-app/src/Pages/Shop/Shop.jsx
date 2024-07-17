@@ -5,6 +5,7 @@ import { getAuthors } from '../../Backend/Service/authorService';
 import { IoSearch } from "react-icons/io5";
 import Header from '../../Component/Header/Header';
 import Footer from '../../Component/Footer/Footer';
+import { FiSearch, FiHeart, FiShoppingCart } from "react-icons/fi";
 import './Shop.css';
 import { RxSlash } from "react-icons/rx";
 
@@ -82,7 +83,19 @@ const Shop = () => {
   };
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  
+
+  const handleSearchClick = (product) => {
+    // Implement search click functionality
+  };
+
+  const handleFavoriteClick = (product) => {
+    // Implement favorite click functionality
+  };
+
+  const handleCartClick = (product) => {
+    // Implement add to cart functionality
+  };
+
   return (
     <div>
       <Header />
@@ -180,9 +193,21 @@ const Shop = () => {
                   <div key={product.product_id} className="customer-shop-card">
                     <div className="customer-shop-image-container">
                       <img src={product.imgProducts[0]?.img_url} alt={product.product_name} className="customer-shop-image" />
+                      <div className="customer-shop-icons">
+                        <button onClick={() => handleSearchClick(product)}>
+                          <FiSearch />
+                        </button>
+                        <button onClick={() => handleFavoriteClick(product)}>
+                          <FiHeart />
+                        </button>
+                        <button onClick={() => handleCartClick(product)}>
+                          <FiShoppingCart />
+                        </button>
+                      </div>
                     </div>
-                    <h2>{product.product_name}</h2>
-                    <p>Price: ${product.price}</p>
+                    <h2 className="customer-shop-product-name">{product.product_name}</h2>
+                    <p className="customer-shop-author-name">{product.author.author_name}</p>
+                    <p className="customer-shop-price">Price: ${product.price}</p>
                   </div>
                 ))}
               </div>

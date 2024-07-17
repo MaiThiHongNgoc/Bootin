@@ -2,6 +2,7 @@ import React from 'react';
 import { BsCart3, BsGrid1X2Fill, BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsListCheck } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { RxAvatar } from "react-icons/rx";
+import { IoMdImages } from "react-icons/io";
 
 function Sidebar({ openSidebarToggle, OpenSidebar }) {
   return (
@@ -17,6 +18,11 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
         <li className='sidebar-list-item'>
           <Link to="/" className="sidebar-link">
             <BsGrid1X2Fill className='icon' /> Dashboard
+          </Link>
+        </li>
+        <li className='sidebar-list-item'>
+          <Link to="/image" className="sidebar-link">
+            <IoMdImages className='icon' /> Image Products
           </Link>
         </li>
         <li className='sidebar-list-item'>
