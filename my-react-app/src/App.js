@@ -25,10 +25,18 @@ import UserList from "./Backend/User/UserList";
 import CategoryList from "./Backend/Category/CategoryList";
 import AuthorList from "./Backend/Author/AuthorList";
 import ProductList from "./Backend/Product/ProductList";
-import OrderList from "./Backend/Order/orderList";
+import OrderList from "./Backend/order/orderList";
 import OrderDetailList from "./Backend/orderDetail/orderDetailList";
 import Staff from "./Backend/staff/Staff";
+<<<<<<< Updated upstream
 import ImageList from "./Backend/Image/ImageList";
+=======
+<<<<<<< HEAD
+import Login from "./Pages/Login/Login";
+=======
+import ImageList from "./Backend/Image/ImageList";
+>>>>>>> 1a10d19e0c206a4b9192c68ea7fccc7b3bb4d64d
+>>>>>>> Stashed changes
 
 
 function App() {
@@ -47,7 +55,15 @@ function App() {
           <Route path="/author" element={<Author />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/404" element={<PageNotFound />} />
+<<<<<<< Updated upstream
           
+=======
+<<<<<<< HEAD
+          <Route path="/login" element={<Login />} />
+=======
+          
+>>>>>>> 1a10d19e0c206a4b9192c68ea7fccc7b3bb4d64d
+>>>>>>> Stashed changes
 
 
 
