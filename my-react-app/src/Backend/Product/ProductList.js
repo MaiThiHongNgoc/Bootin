@@ -109,8 +109,18 @@ const ProductList = () => {
                                     <td>{product.price}</td>
                                     <td>{product.categories.category_name}</td>
                                     <td>
+<<<<<<< Updated upstream
                                         {product.imgProducts && product.imgProducts.map(img => (
                                             <img key={img.img_id} src={img.img_url} alt={img.img_name} className="product-image" />
+=======
+<<<<<<< HEAD
+                                        {product.imgProducts.map((img) => (
+                                            <img key={img.img_id} src={img.img_url} alt={product.product_name} className="product-image" />
+=======
+                                        {product.imgProducts && product.imgProducts.map(img => (
+                                            <img key={img.img_id} src={img.img_url} alt={img.img_name} className="product-image" />
+>>>>>>> 1a10d19e0c206a4b9192c68ea7fccc7b3bb4d64d
+>>>>>>> Stashed changes
                                         ))}
                                     </td>
                                     <td>
