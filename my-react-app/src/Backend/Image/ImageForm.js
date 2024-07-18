@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { getProducts } from '../Service/productService';
+import { getAllProducts } from '../Service/productService';
 import imgService from '../Service/imgService';
+import './ImageForm.css'
 
 const ImageForm = ({ img_product, onSave }) => {
   const [formData, setFormData] = useState({
@@ -22,13 +23,13 @@ const ImageForm = ({ img_product, onSave }) => {
           setFormData({
               img_name: img_product.img_name,
               img_url: img_product.img_url,
-              product: { product_id: img_product.product.product_id }
+              product: { product_id: img_product.products ? img_product.products.product_id : '' },
           });
       } else {
           setFormData({
               img_name: '',
               img_url: '',
-              product: { product_id: '' }
+              product: { product_id: '' },
           });
       }
   }, [img_product]);
@@ -37,12 +38,8 @@ const ImageForm = ({ img_product, onSave }) => {
       setLoading(true);
       setError('');
       try {
-          const response = await getProducts();
-          if (Array.isArray(response.data.content)) {
-              setProducts(response.data.content);
-          } else {
-              setProducts([]);
-          }
+          const response = await getAllProducts(); // Use the new function
+          setProducts(response.data.content);
       } catch (error) {
           console.error('Failed to fetch products', error);
           setError('Failed to load products. Please try again later.');
@@ -54,19 +51,32 @@ const ImageForm = ({ img_product, onSave }) => {
   const handleChange = (e) => {
       const { name, value } = e.target;
       if (name === 'product') {
-          setFormData({ ...formData, product: { product_id: value } });
+          setFormData({
+              ...formData,
+              product: { product_id: value },
+          });
       } else {
-          setFormData({ ...formData, [name]: value });
+          setFormData({
+              ...formData,
+              [name]: value,
+          });
       }
   };
 
   const handleSubmit = async (e) => {
       e.preventDefault();
       try {
+          const submissionData = {
+              ...formData,
+              products: {
+                  product_id: formData.product.product_id,
+              },
+          };
+
           if (img_product) {
-              await imgService.updateImage(img_product.img_id, formData);
+              await imgService.updateImage(img_product.img_id, submissionData);
           } else {
-              await imgService.createImage(formData);
+              await imgService.createImage(submissionData);
           }
           onSave();
       } catch (error) {
@@ -75,48 +85,51 @@ const ImageForm = ({ img_product, onSave }) => {
   };
 
   return (
-      <form onSubmit={handleSubmit}>
-          <div>
-              <label>Image Name</label>
-              <input
-                  type="text"
-                  name="img_name"
-                  value={formData.img_name}
-                  onChange={handleChange}
-              />
-          </div>
-          <div>
-              <label>Image URL</label>
-              <input
-                  type="text"
-                  name="img_url"
-                  value={formData.img_url}
-                  onChange={handleChange}
-              />
-          </div>
-          <div>
-              <label>Product</label>
-              {loading ? (
-                  <p>Loading products...</p>
-              ) : error ? (
-                  <p className="error-message">{error}</p>
-              ) : (
-                  <select
-                      name="product"
-                      value={formData.product.product_id}
-                      onChange={handleChange}
-                  >
-                      <option value="">Select product...</option>
-                      {products.map((product) => (
-                          <option key={product.product_id} value={product.product_id}>
-                              {product.product_name}
-                          </option>
-                      ))}
-                  </select>
-              )}
-          </div>
-          <button type="submit">Save</button>
-      </form>
+    <form className="image-form" onSubmit={handleSubmit}>
+    <div className="image-form-field">
+        <label className="image-form-label">Image Name</label>
+        <input
+            type="text"
+            name="img_name"
+            value={formData.img_name}
+            onChange={handleChange}
+            className="image-form-input"
+        />
+    </div>
+    <div className="image-form-field">
+        <label className="image-form-label">Image URL</label>
+        <input
+            type="text"
+            name="img_url"
+            value={formData.img_url}
+            onChange={handleChange}
+            className="image-form-input"
+        />
+    </div>
+    <div className="image-form-field">
+        <label className="image-form-label">Product</label>
+        {loading ? (
+            <p className="image-form-loading">Loading products...</p>
+        ) : error ? (
+            <p className="image-form-error">{error}</p>
+        ) : (
+            <select
+                name="product"
+                value={formData.product.product_id}
+                onChange={handleChange}
+                className="image-form-select"
+            >
+                <option value="">Select product...</option>
+                {products.map((product) => (
+                    <option key={product.product_id} value={product.product_id}>
+                        {product.product_name}
+                    </option>
+                ))}
+            </select>
+        )}
+    </div>
+    <button type="submit" className="image-form-button">Save</button>
+</form>
   );
 };
 

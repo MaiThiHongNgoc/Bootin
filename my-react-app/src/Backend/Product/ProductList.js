@@ -11,6 +11,7 @@ const ProductList = () => {
     const [error, setError] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1); // Total number of pages
     const [productsPerPage] = useState(10); // Number of products per page
 
     useEffect(() => {
@@ -23,6 +24,7 @@ const ProductList = () => {
         try {
             const response = await getProducts(page - 1, productsPerPage); // Adjust page number for pagination
             setProducts(response.data.content);
+            setTotalPages(response.data.totalPages); // Update the total number of pages
         } catch (error) {
             console.error('Failed to fetch products', error);
             setError('Failed to load products. Please try again later.');
@@ -60,7 +62,7 @@ const ProductList = () => {
         setSearchQuery(e.target.value);
     };
 
-    const filteredProducts = products.filter(product => 
+    const filteredProducts = products.filter(product =>
         product.product_name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
@@ -121,8 +123,8 @@ const ProductList = () => {
                     </table>
                     {/* Pagination */}
                     <ul className="pagination">
-                        {Array.from({ length: Math.ceil(products.length / productsPerPage) }, (_, index) => (
-                            <li key={index} className="page-item">
+                        {Array.from({ length: totalPages }, (_, index) => (
+                            <li key={index} className={`page-item ${currentPage === index + 1 ? 'active' : ''}`}>
                                 <button onClick={() => paginate(index + 1)} className="page-link">
                                     {index + 1}
                                 </button>

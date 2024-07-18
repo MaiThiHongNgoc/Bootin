@@ -6,6 +6,9 @@ const API_URL = 'http://localhost:9191/api/products/v1/';
 export const getProducts =  async (page = 0) => {
     return  axios.get(`${API_URL}?p=${page}`);
 };
+export const getAllProducts = () => {
+    return axios.get(`${API_URL}`);
+};
 
 // Lấy chi tiết sản phẩm theo ID
 export const getProductById = (id) => {
